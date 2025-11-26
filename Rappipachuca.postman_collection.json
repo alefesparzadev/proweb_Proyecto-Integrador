@@ -1,0 +1,103 @@
+{
+	"info": {
+		"_postman_id": "853ba1de-51de-4db9-a9fa-efc858b37d77",
+		"name": "Rappipachuca",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38133680"
+	},
+	"item": [
+		{
+			"name": "vwCartaPedidos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\n                  xmlns:urn=\"http://localhost/\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <urn:vwCartaPedidos>\n      </urn:vwCartaPedidos>\n   </soapenv:Body>\n</soapenv:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/proweb/1erseg/rappipachuca/servicioweb/servicioweb.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"proweb",
+						"1erseg",
+						"rappipachuca",
+						"servicioweb",
+						"servicioweb.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "vwDestacado",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\n                  xmlns:urn=\"http://localhost/\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <urn:vwDestacado>\n      </urn:vwDestacado>\n   </soapenv:Body>\n</soapenv:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/proweb/1erseg/rappipachuca/servicioweb/servicioweb.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"proweb",
+						"1erseg",
+						"rappipachuca",
+						"servicioweb",
+						"servicioweb.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "spMostrarProductos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\n                  xmlns:urn=\"http://localhost/\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <urn:vwDestacado>\n      </urn:vwDestacado>\n   </soapenv:Body>\n</soapenv:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/proweb/1erseg/rappipachuca/servicioweb/servicioweb.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"proweb",
+						"1erseg",
+						"rappipachuca",
+						"servicioweb",
+						"servicioweb.php"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
