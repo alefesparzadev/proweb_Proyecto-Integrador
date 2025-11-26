@@ -13,7 +13,7 @@ class clsServicios
 
         $i = 0; // <------ variable para controlar los registros del arreglo
 
-        if($conn = mysqli_connect("127.0.0.1", "root", "root", "BD_CONTACTOS", 3306) ){
+        if($conn = mysqli_connect("127.0.0.1", "root", "Maple0017", "BD_CONTACTOS", 3306) ){
         //if ($conn = mysqli_connect("dbproweb.c0fwxjrgyi8c.us-east-1.rds.amazonaws.com", "admin", "ProgWeb_25.", "BD_PROSOFT", 3306)) {
             // Ejecución del comando SQL y recibir resultados (recordset)
             $renglon = mysqli_query($conn, $cmdSql);
@@ -48,7 +48,7 @@ public function vwDestacado()
     $cmdSql = "select * from destacado;"; // Llama a la nueva vista
     $i=0;
     // ... (código de conexión a BD_CONTACTOS) ...
-    if($conn = mysqli_connect("127.0.0.1", "root", "root", "BD_CONTACTOS", 3306) ){
+    if($conn = mysqli_connect("127.0.0.1", "root", "Maple0017", "BD_CONTACTOS", 3306) ){
     $renglon = mysqli_query($conn, $cmdSql);
 
     while ($resultado = mysqli_fetch_assoc($renglon)) {
@@ -71,7 +71,7 @@ public function vwDestacado()
     $datos = array();
     $cmdSql = "CALL spMostrarProductos($cveProducto);";
     $i = 0;
-    if ($conn = mysqli_connect("127.0.0.1", "root", "root", "BD_CONTACTOS", 3306)) {
+    if ($conn = mysqli_connect("127.0.0.1", "root", "Maple0017", "BD_CONTACTOS", 3306)) {
         $renglon = mysqli_query($conn, $cmdSql);
         if ($renglon) {
             while ($resultado = mysqli_fetch_assoc($renglon)) {

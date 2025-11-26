@@ -3,15 +3,13 @@
 $current = basename($_SERVER['PHP_SELF']);
 function isActive($page, $current) { return $page === $current ? 'active' : ''; }
 ?>
-<!-- Bootstrap 5 (si ya lo cargas en tu layout, puedes quitar estas 2 líneas) -->
-<!--<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" -->
-<!--<link href="../bootstrap/css/bootstrap-icons.css" rel="stylesheet" -->
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm pf-nav">
+<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm pf-nav">
   <div class="container">
     <a class="navbar-brand d-flex align-items-center gap-2" href="inicio.php">
-      <span class="pf-logo d-inline-block"></span>
-      <strong>Programación Web • ISC</strong>
+      <!-- Logo Rappi-like (simulado con icono o texto) -->
+      <i class="bi bi-bag-heart-fill text-primary" style="font-size: 1.5rem;"></i>
+      <strong class="text-dark">RappiPachuca</strong>
     </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#pfNavbar"
@@ -28,67 +26,48 @@ function isActive($page, $current) { return $page === $current ? 'active' : ''; 
         </li>        
         <li class="nav-item">
           <a class="nav-link position-relative <?= isActive('rptarticulos.php',$current) ?>" href="inicio.php?op=rptarticulos">
-            <i class="bi bi-graph-up me-1"></i>Menu
+            <i class="bi bi-shop me-1"></i>Restaurantes / Tiendas
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link position-relative <?= isActive('acceso.php',$current) ?>" href="inicio.php?op=acceso">
-            <i class="bi bi-person-circle me-1"></i>Mi sesión
-          </a>
-        </li>
-<?php
-if (isset($_SESSION['nomUsuario']) ) {									
-
-?>
-        <li class="nav-item">
-          <a class="nav-link position-relative <?= isActive('cerrarsesion.php',$current) ?>" href="inicio.php?op=cerrarsesion">
-            <i class="bi bi-box-arrow-right me-1"></i>
-            (<?php echo $_SESSION['nomUsuario']; ?>)
-          </a>
-        </li>
-<?php
-
-  }
-
-?>
+        <!-- Se eliminaron las opciones de sesión -->
       </ul>
     </div>
   </div>
 </nav>
 
 <style>
+  /* Rappi Color Palette */
+  :root {
+      --rappi-orange: #FF441F;
+      --rappi-white: #FFFFFF;
+      --rappi-gray: #F5F5F5;
+  }
+
+  .text-primary { color: var(--rappi-orange) !important; }
+  .bg-primary { background-color: var(--rappi-orange) !important; }
+  
+  .pf-nav {
+    background-color: var(--rappi-white) !important;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
   .pf-nav .nav-link {
-    --underline: 0;
-    transition: color .2s ease, transform .2s ease;
+    color: #333 !important;
+    font-weight: 500;
+    transition: color .2s ease;
   }
-  .pf-nav .nav-link:hover { transform: translateY(-1px); }
-  .pf-nav .nav-link::after{
-    content:""; position:absolute; left:.5rem; right:.5rem; bottom:.3rem; height:2px;
-    background: linear-gradient(90deg, #22d3ee, #a78bfa);
-    transform: scaleX(var(--underline)); transform-origin: right; transition: transform .25s ease;
-    border-radius:2px;
+  
+  .pf-nav .nav-link:hover { 
+      color: var(--rappi-orange) !important; 
   }
-  .pf-nav .nav-link:hover::after { --underline: 1; transform-origin: left; }
-  .pf-nav .nav-link.active { color: #fff !important; }
-  .pf-nav .nav-link.active::after { --underline: 1; }
 
-  /* Botón gradiente */
-  .btn-gradient{
-    background: linear-gradient(90deg, #22d3ee, #34d399);
-    color:#0b1020; border: none; border-radius: .75rem;
-    box-shadow: 0 8px 24px rgba(0,0,0,.25);
+  .pf-nav .nav-link.active { 
+      color: var(--rappi-orange) !important; 
+      font-weight: 700;
+      border-bottom: 2px solid var(--rappi-orange);
   }
-  .btn-gradient:hover{ filter: brightness(1.07); }
-
-  /* Logo animado */
-  .pf-logo{
-    width: 30px; height: 30px; border-radius: 10px;
-    background: conic-gradient(from 180deg at 50% 50%, #22d3ee, #a78bfa, #34d399, #22d3ee);
-    box-shadow: inset 0 0 8px rgba(255,255,255,.25), 0 6px 16px rgba(0,0,0,.35);
-    animation: pfspin 12s linear infinite;
+  
+  .navbar-brand i {
+      color: var(--rappi-orange) !important;
   }
-  @keyframes pfspin { to { transform: rotate(360deg);} }
 </style>
-
-<!-- Bootstrap JS (si ya lo cargas en tu layout, puedes quitar esta línea) -->
-<!-- <script src="../bootstrap/js/bootstrap.bundle.min.js"></script -->

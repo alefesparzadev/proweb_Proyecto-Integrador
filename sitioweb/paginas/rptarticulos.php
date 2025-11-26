@@ -1,24 +1,14 @@
-
-
 <?php
-/*
-if (!isset($_SESSION['cveUsuario'])){
-  echo "<script language = 'javascript'> alert('Acceso Denegado, debes de iniciar sesion ...'); </script>";
-  echo "<script language = 'javascript'> document.location.href='inicio.php?op=acceso'; </script>";
-}*/
-$totalProductos=0;
-   //######### HACE USO DEL SERVICIO WEB QUE ESTA PUBLICADO DE MANERA LOCAL ########		 
-     //######### HACE USO DEL SERVICIO WEB QUE ESTA PUBLICADO DE MANERA LOCAL ########		 
-      $cliente=new SoapClient(null, array('uri'=>'http://localhost/',
-	  					'location'=>'http://localhost/proweb/1erseg/rappipachuca/servicioweb/servicioweb.php'));	
-              //'location'=>'http://100.26.22.228/proweb/1erseg/practica5/servicioweb/servicioweb.php'));	
-	  //SE EJECUTA UN MÉTODO DEL SERVICIO WEB, PASANDO SUS PARAMETROS
-	  $consulta=$cliente->vwCartaPedidos();
-    $destacado = $cliente->vwDestacado();
-    $producto_destacado = count($destacado) > 0 ? $destacado[0] : null;
+// rptarticulos.php - Refactored for Rappi-style design
 
-	  $totalProductos=5;	//PARA ESTE EJEMPLO SE DEJÓ FIJO MOSTRAR POR RENGLÓN 3 PRODUCTOS
-      
+$cliente = new SoapClient(null, array(
+    'uri' => 'http://localhost/',
+    'location' => 'http://localhost/proweb/proweb_Proyecto-Integrador/servicioweb/servicioweb.php'
+));
+
+$consulta = $cliente->vwCartaPedidos();
+$destacado = $cliente->vwDestacado();
+$producto_destacado = count($destacado) > 0 ? $destacado[0] : null;
 ?>
 
 <html>
@@ -35,82 +25,129 @@ $totalProductos=0;
         background-color: salmon;
       }
       @media (max-width: 1311px) {
-     img{
-        width: 150px;
-         height: 100px;
-    }
-  }
+         img{
+            width: 150px;
+             height: 100px;
+        }
+      }
      </style>
     </head>     
 <body> 
-  <div class="todo">
-<div class="destacado">
-<h2>Producto Destacado</h2>
-        <?php if ($producto_destacado): ?>
-            <a href='?op=rptProductos'>
-                <img src='<?php echo $producto_destacado['foto']; ?>' class='img_size' width='200px' height='135px' style='border-radius: 10px;' />               
-                <br><strong><?php echo $producto_destacado['nombre']; ?></strong>
-                <br>
-                <p><?php echo $producto_destacado['descripcion']; ?></p>
-                <p class='gray'>$<?php echo $producto_destacado['precio']; ?></p>       
-            </a>
-        <?php else: ?>
-            <p>No hay productos destacados disponibles.</p>
-        <?php endif; ?></div>  
-  <form name="frmProductos" method="POST">
-    <div class="container">
-      <table>
-        <tr>
-          <td colspan="3" style="text-align:left;"><strong>Artículos disponibles:</strong>
-          <br><br><br>
-  	</td>
+<div class="container pb-5">
     
-    <td colspan="3" style="text-align:right;">
-      <a href='?op=bienvenida' title='Regresar al inicio'>Regresar a inicio ...</a>
-      <br><br><br>
-    </td>
-  </tr>
-    <?php 
-      $i=0;
+    <!-- Sección Destacado -->
+    <?php if ($producto_destacado): ?>
+    <div class="card card-rappi mb-5 border-0 bg-white">
+        <div class="row g-0 align-items-center">
+            <div class="col-md-6">
+                <img src="<?php echo $producto_destacado['foto']; ?>" class="img-fluid w-100" style="height: 300px; object-fit: cover;" alt="Destacado">
+            </div>
+            <div class="col-md-6">
+                <div class="p-4 p-md-5">
+                    <span class="badge bg-warning text-dark mb-2">⭐ Producto Destacado</span>
+                    <h2 class="fw-bold mb-3"><?php echo $producto_destacado['nombre']; ?></h2>
+                    <p class="text-muted mb-4"><?php echo $producto_destacado['descripcion']; ?></p>
+                    <div class="d-flex align-items-center gap-3">
+                        <h3 class="text-primary fw-bold m-0">$<?php echo $producto_destacado['precio']; ?></h3>
+                        <!-- Link to new Landing Page -->
+                        <a href="paginas/landing_tacosal.php" class="btn btn-rappi rounded-pill px-4">
+                            Ver Experiencia Premium
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
 
-    for($rr=0;$rr<count($consulta);$rr++){
+    <!-- Título Sección -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold m-0">Restaurantes y Tiendas</h3>
+        <div class="dropdown">
+            <button class="btn btn-light dropdown-toggle rounded-pill" type="button" data-bs-toggle="dropdown">
+                Ordenar por
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Recomendados</a></li>
+                <li><a class="dropdown-item" href="#">Precio: Menor a Mayor</a></li>
+            </ul>
+        </div>
+    </div>
 
-      if($i==0)
-        echo "<tr>";
-// echo "   <a href='?op=editusuario&ne=".$datos[$rr]["clave"]."' class='btn btn-warning' isActive('rptusuarios.php',$current) title='Editar' >Editar<i class='fa fa-pencil-square-o'></i></a>";
-        $clave_producto = $consulta[$rr]['clave'];
-        echo "<td style='text-align:center;'>"; 
-            echo "<a href='?op=detalleproducto&cve=" . $clave_producto . "'>";
-            echo "<img src='".$consulta[$rr]['foto']."' class='img_size' width='250px' height='165px' style='border-radius: 10px;' />";               
-            echo "<br><strong>".$consulta[$rr]['nombre']."</strong><br>"; 
-            echo "<p class='gray'>$".$consulta[$rr]['precio']."</p>";   		
-            echo "</a>";
-          echo "</td>";
-        $i++;
+    <!-- Grid de Productos -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <?php foreach ($consulta as $prod): ?>
+        <div class="col">
+            <div class="card card-rappi h-100 cursor-pointer" onclick="verDetalle(<?php echo $prod['clave']; ?>)" style="cursor: pointer;">
+                <div class="position-relative">
+                    <img src="<?php echo $prod['foto']; ?>" class="card-img-top" alt="<?php echo $prod['nombre']; ?>" style="height: 200px; object-fit: cover;">
+                    <button class="btn btn-light btn-sm position-absolute top-0 end-0 m-2 rounded-circle shadow-sm">
+                        <i class="bi bi-heart"></i>
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <h5 class="card-title fw-bold mb-0"><?php echo $prod['nombre']; ?></h5>
+                        <span class="badge bg-light text-dark border">4.5 <i class="bi bi-star-fill text-warning" style="font-size: 0.8em;"></i></span>
+                    </div>
+                    <p class="card-text text-muted small text-truncate"><?php echo $prod['descripcion']; ?></p>
+                    <div class="d-flex justify-content-between align-items-center mt-3">
+                        <span class="text-primary fw-bold fs-5">$<?php echo $prod['precio']; ?></span>
+                        <button class="btn btn-sm btn-outline-secondary rounded-pill">
+                            <i class="bi bi-plus-lg"></i> Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endforeach; ?>
+    </div>
 
-      //verifica si cierra el renglón e inicializa $i en cero
-      if($i==$totalProductos){
-        echo "</tr>";
-        $i=0;
-      }
-
-    } //fin del ciclo for
-  ?>
-  </table>
-  </div>
-</form> 
-<div class="destacado"><h2>Producto Destacado</h2>
-        <?php if ($producto_destacado): ?>
-            <a href='?op=rptarticulos'>
-                <img src='<?php echo $producto_destacado['foto']; ?>' class='img_size' width='200px' height='135px' style='border-radius: 10px;' />               
-                <br><strong><?php echo $producto_destacado['nombre']; ?></strong>
-                <br>
-                <p><?php echo $producto_destacado['descripcion']; ?></p>
-                <p class='gray'>$<?php echo $producto_destacado['precio']; ?></p>       
-            </a>
-        <?php else: ?>
-            <p>No hay productos destacados disponibles.</p>
-        <?php endif; ?></div>   
 </div>
+
+<!-- Modal Flotante -->
+<div class="modal fade" id="productoModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 rounded-4 overflow-hidden">
+            <div class="modal-header border-0 position-absolute top-0 end-0 p-3" style="z-index: 10;">
+                <button type="button" class="btn-close bg-white rounded-circle shadow-sm p-2" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-0" id="modal-body-content">
+                <!-- El contenido se cargará aquí vía AJAX -->
+                <div class="d-flex justify-content-center align-items-center p-5">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Cargando...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function verDetalle(id) {
+    var modal = new bootstrap.Modal(document.getElementById('productoModal'));
+    var modalBody = document.getElementById('modal-body-content');
+    
+    // Mostrar loading
+    modalBody.innerHTML = `
+        <div class="d-flex justify-content-center align-items-center p-5" style="min-height: 300px;">
+            <div class="spinner-border text-primary" role="status"></div>
+        </div>
+    `;
+    
+    modal.show();
+
+    // Fetch details
+    fetch('paginas/get_detalle_producto.php?cve=' + id)
+        .then(response => response.text())
+        .then(html => {
+            modalBody.innerHTML = '<div class="p-4">' + html + '</div>';
+        })
+        .catch(error => {
+            modalBody.innerHTML = '<div class="p-4 text-center text-danger">Error al cargar los detalles.</div>';
+        });
+}
+</script>
 </body>
 </html>

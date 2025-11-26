@@ -2,7 +2,7 @@
 // Asegúrate de incluir aquí el código para inicializar el cliente SOAP
 // Es idéntico al que tienes en tu página de listado.
 $cliente=new SoapClient(null, array('uri'=>'http://localhost/',
-              'location'=>'http://localhost/proweb/1erseg/rappipachuca/servicioweb/servicioweb.php'));  
+              'location'=>'http://localhost/proweb/proweb_Proyecto-Integrador/servicioweb/servicioweb.php'));  
 
 $datos_producto = null;
 $error = null; // Inicializamos la variable de error
