@@ -31,8 +31,8 @@ if (isset($_GET['cve']) && is_numeric($_GET['cve'])) {
             $html .= '<div class="row">';
             
             // Columna Imagen
-            $html .= '<div class="col-md-6 mb-3">';
-            $html .= '<img src="' . $datos['foto_pro'] . '" class="img-fluid rounded shadow-sm" alt="' . $datos['producto'] . '">';
+            $html .= '<div class="col-md-6 mb-3 mb-md-0">';
+            $html .= '<img src="' . $datos['foto_pro'] . '" class="w-100 rounded shadow-sm" style="height: 400px; object-fit: cover;" alt="' . $datos['producto'] . '">';
             $html .= '</div>';
 
             // Columna Información

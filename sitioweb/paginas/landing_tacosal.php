@@ -1,5 +1,12 @@
 <?php
 // landing_tacosal.php - High End Landing Page
+$cliente = new SoapClient(null, array(
+    'uri' => 'http://localhost/',
+    'location' => 'http://localhost/proweb/proweb_Proyecto-Integrador/servicioweb/servicioweb.php'
+));
+$destacado = $cliente->vwDestacado();
+$producto_destacado = count($destacado) > 0 ? $destacado[0] : null;
+$id_destacado = $producto_destacado ? $producto_destacado['clave'] : 0;
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -47,7 +54,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.4;
+            opacity: 0.6;
             z-index: 0;
         }
         
@@ -159,11 +166,11 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <!-- Video Background (Using a placeholder or local video if available) -->
+        <!-- Video Background -->
         <video class="hero-video" autoplay muted loop playsinline>
-            <source src="https://videos.pexels.com/video-files/2929683/2929683-hd_1920_1080_30fps.mp4" type="video/mp4">
+            <source src="../imagenes/productos/video_taco_premium.mp4" type="video/mp4">
             <!-- Fallback image if video fails -->
-            <img src="../imagenes/productos/taco_sal_premium.png" alt="Background">
+            <img src="../imagenes/productos/taco_sal_premium_real.png" alt="Background">
         </video>
         
         <div class="hero-content">
@@ -178,7 +185,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-5 mb-lg-0">
-                    <img src="../imagenes/productos/taco_sal_premium.png" alt="Taco de Sal Premium" class="product-image">
+                    <img src="../imagenes/productos/taco_sal_premium_real.png" alt="Taco de Sal Premium" class="product-image">
                 </div>
                 <div class="col-lg-6 ps-lg-5">
                     <h2 class="display-4 mb-4 text-white">Una Experiencia Culinaria</h2>
@@ -193,7 +200,9 @@
                     </ul>
                     
                     <div class="d-flex gap-3">
-                        <button class="btn btn-premium" style="background: var(--gold); color: black;">Ordenar Ahora - $150.00</button>
+                        <button class="btn btn-premium" style="background: var(--gold); color: black;" onclick="verDetalle(<?php echo $id_destacado; ?>)">
+                            Ordenar Ahora - $<?php echo $producto_destacado ? $producto_destacado['precio'] : '150.00'; ?>
+                        </button>
                         <button class="btn btn-outline-light px-4 py-3 rounded-0" onclick="window.location.href='../inicio.php'">Ver Menú Completo</button>
                     </div>
                 </div>
@@ -205,6 +214,52 @@
         <p class="m-0">© 2024 RappiPachuca Signature Collection</p>
     </footer>
 
+    <!-- Modal Flotante (Copied from rptarticulos.php) -->
+    <div class="modal fade" id="productoModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 rounded-4 overflow-hidden" style="color: #333;">
+                <div class="modal-header border-0 position-absolute top-0 end-0 p-3" style="z-index: 10;">
+                    <button type="button" class="btn-close bg-white rounded-circle shadow-sm p-2" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0" id="modal-body-content">
+                    <!-- El contenido se cargará aquí vía AJAX -->
+                    <div class="d-flex justify-content-center align-items-center p-5">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Cargando...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+    function verDetalle(id) {
+        if(id == 0) { alert('Producto no disponible'); return; }
+        
+        var modal = new bootstrap.Modal(document.getElementById('productoModal'));
+        var modalBody = document.getElementById('modal-body-content');
+        
+        // Mostrar loading
+        modalBody.innerHTML = `
+            <div class="d-flex justify-content-center align-items-center p-5" style="min-height: 300px;">
+                <div class="spinner-border text-primary" role="status"></div>
+            </div>
+        `;
+        
+        modal.show();
+
+        // Fetch details (adjusted path since we are in paginas/)
+        fetch('get_detalle_producto.php?cve=' + id)
+            .then(response => response.text())
+            .then(html => {
+                modalBody.innerHTML = '<div class="p-4">' + html + '</div>';
+            })
+            .catch(error => {
+                modalBody.innerHTML = '<div class="p-4 text-center text-danger">Error al cargar los detalles.</div>';
+            });
+    }
+    </script>
 </body>
 </html>

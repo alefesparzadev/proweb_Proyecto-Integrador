@@ -34,17 +34,6 @@
           <a class="btn btn-outline-primary btn-sm rounded-3" href="#" title="Facebook"><i class="bi bi-facebook"></i></a>
         </div>
       </div>
-
-      <div class="col-12 col-md-6 col-lg-3">
-        <h5 class="fw-bold text-white">Enlaces rápidos</h5>
-        <ul class="list-unstyled">
-          <li class="mb-1"><a class="link-secondary link-opacity-75-hover text-decoration-none" href="inicio.php">Inicio</a></li>
-          <li class="mb-1"><a class="link-secondary link-opacity-75-hover text-decoration-none" href="inicio.php?op=rptarticulos">Articulos</a></li>
-          <li class="mb-1"><a class="link-secondary link-opacity-75-hover text-decoration-none" href="inicio.php?op=bienvenida">Admin Productos</a></li>
-          <li class="mb-1"><a class="link-secondary link-opacity-75-hover text-decoration-none" href="#" id="pfGoTopLink">Volver arriba</a></li>
-        </ul>
-      </div>
-
       <div class="col-12 col-md-6 col-lg-3">
         <h5 class="fw-bold text-white">Contacto</h5>
         <ul class="list-unstyled text-secondary mb-0">

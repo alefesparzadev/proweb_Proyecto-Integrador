@@ -47,27 +47,31 @@ function isActive($page, $current) { return $page === $current ? 'active' : ''; 
   .bg-primary { background-color: var(--rappi-orange) !important; }
   
   .pf-nav {
-    background-color: var(--rappi-white) !important;
+    background-color: var(--rappi-orange) !important; /* Changed to Orange */
     border-bottom: 1px solid #e0e0e0;
   }
 
   .pf-nav .nav-link {
-    color: #333 !important;
+    color: white !important; /* Changed to White */
     font-weight: 500;
     transition: color .2s ease;
   }
   
   .pf-nav .nav-link:hover { 
-      color: var(--rappi-orange) !important; 
+      color: #f0f0f0 !important; 
   }
 
   .pf-nav .nav-link.active { 
-      color: var(--rappi-orange) !important; 
+      color: white !important; 
       font-weight: 700;
-      border-bottom: 2px solid var(--rappi-orange);
+      border-bottom: 2px solid white;
   }
   
   .navbar-brand i {
-      color: var(--rappi-orange) !important;
+      color: white !important; /* Changed to White */
+  }
+  
+  .navbar-brand strong {
+      color: white !important; /* Changed to White */
   }
 </style>
