@@ -5,7 +5,7 @@
 // 1. Inicializar cliente SOAP (Misma configuración que en otros archivos)
 $cliente = new SoapClient(null, array(
     'uri' => 'http://localhost/',
-    'location' => 'http://localhost/proweb/proweb_Proyecto-Integrador/servicioweb/servicioweb.php'
+    'location' => 'http://98.84.225.216/proweb/proweb_Proyecto-Integrador/servicioweb/servicioweb.php'
 ));
 
 $html = '';

@@ -3,7 +3,7 @@
 
 $cliente = new SoapClient(null, array(
     'uri' => 'http://localhost/',
-    'location' => 'http://localhost/proweb/proweb_Proyecto-Integrador/servicioweb/servicioweb.php'
+    'location' => 'http://98.84.225.216/proweb/proweb_Proyecto-Integrador/servicioweb/servicioweb.php'
 ));
 
 $consulta = $cliente->vwCartaPedidos();
@@ -126,7 +126,7 @@ $producto_destacado = count($destacado) > 0 ? $destacado[0] : null;
 
 $cliente = new SoapClient(null, array(
     'uri' => 'http://localhost/',
-    'location' => 'http://localhost/proweb/proweb_Proyecto-Integrador/servicioweb/servicioweb.php'
+    'location' => 'http://98.84.225.216/proweb/proweb_Proyecto-Integrador/servicioweb/servicioweb.php'
 ));
 
 $consulta = $cliente->vwCartaPedidos();
