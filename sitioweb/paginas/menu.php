@@ -4,12 +4,12 @@ $current = basename($_SERVER['PHP_SELF']);
 function isActive($page, $current) { return $page === $current ? 'active' : ''; }
 ?>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm pf-nav">
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow-sm pf-nav">
   <div class="container">
     <a class="navbar-brand d-flex align-items-center gap-2" href="inicio.php">
       <!-- Logo Rappi-like (simulado con icono o texto) -->
-      <i class="bi bi-bag-heart-fill text-primary" style="font-size: 1.5rem;"></i>
-      <strong class="text-dark">RappiPachuca</strong>
+      <i class="bi bi-bag-heart-fill text-white" style="font-size: 1.5rem;"></i>
+      <strong class="text-white">RappiPachuca</strong>
     </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#pfNavbar"
@@ -20,12 +20,12 @@ function isActive($page, $current) { return $page === $current ? 'active' : ''; 
     <div class="collapse navbar-collapse" id="pfNavbar">
       <ul class="navbar-nav ms-auto align-items-lg-center mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link position-relative <?= isActive('inicio.php',$current) ?>" href="inicio.php">
+          <a class="nav-link position-relative text-white <?= isActive('inicio.php',$current) ?>" href="inicio.php">
             <i class="bi bi-house-door me-1"></i>Inicio
           </a>
         </li>        
         <li class="nav-item">
-          <a class="nav-link position-relative <?= isActive('rptarticulos.php',$current) ?>" href="inicio.php?op=rptarticulos">
+          <a class="nav-link position-relative text-white <?= isActive('rptarticulos.php',$current) ?>" href="inicio.php?op=rptarticulos">
             <i class="bi bi-shop me-1"></i>Restaurantes / Tiendas
           </a>
         </li>

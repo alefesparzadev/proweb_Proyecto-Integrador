@@ -25,7 +25,7 @@
       <div class="col-12 col-md-6 col-lg-3">
         <h5 class="fw-bold text-primary">Sobre el sitio</h5>
         <p class="text-secondary mb-3">
-          Material de la materia <strong>Programación Web (7°, 8° ISC)</strong>. Prácticas con PHP, HTML, CSS, JS, MySQL <strong>(Friendly Web Design).</strong> 21200591 <div class="my_name">ALEF DAVID ESPARZA DIAZ</div> 
+          Material de la materia <strong>Programación Web (7°, 8° ISC)</strong>. Prácticas con PHP, HTML, CSS, JS, MySQL <strong>(Friendly Web Design).</strong> 21200591 <div class="my_name">ALEF DAVID ESPARZA DIAZ  ANGEL EDUARDO LUGO LOPEZ</div> 
         </p>
         <div class="d-flex gap-2">
           <a class="btn btn-outline-primary btn-sm rounded-3" href="#" title="GitHub"><i class="bi bi-github"></i></a>
